@@ -6,11 +6,11 @@ Created on Tue Sep 27 22:10:25 2022
 """
 
 import numpy as np
-import joblib
+import pickle
 import streamlit as st
 
 #Loading the saved model
-loaded_model = joblib.load('Sales_store_prediction.joblib')
+loaded_model = pickle.load('Sales_store_prediction.sav')
 
 #creating a function for prediction
 
