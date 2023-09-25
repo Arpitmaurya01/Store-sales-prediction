@@ -6,11 +6,11 @@ Created on Tue Sep 27 22:10:25 2022
 """
 
 import numpy as np
-import pickle
+import joblib
 import streamlit as st
 
 #Loading the saved model
-loaded_model = pickle.load(open('Sales_store_prediction.sav','rb'))
+loaded_model = joblib.load('Sales_store_prediction.joblib')
 
 #creating a function for prediction
 
@@ -35,15 +35,17 @@ def main():
     
     #Getting input Data from User
     
-    Item_Weight=st.number_input('Item_Weight')
-    Item_Fat_Content=st.text_input('Item_Fat_Content')
-    Item_Visibility=st.number_input('Item_Visibility')
-    Item_Type=st.text_input('Item_Type')
-    Item_MRP=st.number_input('Item_MRP')
-    Outlet_Establishment_Year=st.text_input('Outlet_Establishment_Year')
-    Outlet_Size=st.text_input('Outlet_Size')
-    Outlet_Location_Type=st.text_input('Outlet_Location_Type')
-    Outlet_Type=st.text_input('Outlet_Type')
+    Item_Weight=st.number_input('Item_Weight',min_value=1.000,max_value=50.000)
+    Item_Fat_Content=st.selectbox("Item Fat Content",["Low Fat","Regular"])
+    Item_Visibility=st.number_input('Item_Visibility',min_value=0.0000000,max_value=1.0000000)
+    Item_Type=st.selectbox('Item_Type',['Fruits and Vegetables','Snack Foods','Frozen Foods','Dairy','Canned',
+                                        'Baking Goods','Health and Hygiene','Soft Drinks','Meat','Breads','Hard Drinks',
+                                        'Starchy Foods','Breakfast','Seafood','Others'])
+    Item_MRP=st.number_input('Item_MRP',min_value=20.0000,max_value=500.0000)
+    Outlet_Establishment_Year=st.selectbox('Outlet_Establishment_Year',[1985,1987,1997,1998,1999,2002,2004,2007,2009])
+    Outlet_Size=st.selectbox('Outlet_Size',['Small','Medium','High'])
+    Outlet_Location_Type=st.selectbox('Outlet_Location_Type',['Tier 1','Tier 2','Tier 3'])
+    Outlet_Type=st.selectbox('Outlet_Type',['Supermarket Type1','Grocery Store','Supermarket Type3','Supermarket Type2'])
     
     sq_Item_Visibility=np.sqrt(Item_Visibility)
     #coading for prediction
