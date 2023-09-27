@@ -10,7 +10,7 @@ import joblib
 import streamlit as st
 
 #Loading the saved model
-loaded_model=joblib.load("Sales_store_prediction.joblib")
+loaded_model=joblib.load("sales_store_prediction.joblib")
 #creating a function for prediction
 
 def sales_prediction(input_data):
